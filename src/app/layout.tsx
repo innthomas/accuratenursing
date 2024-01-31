@@ -4,11 +4,8 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
 
-//const inter = Inter({ subsets: ["latin"] });
- const fontSans = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
+const inter = Inter({ subsets: ["latin"] });
+ 
 
 export const metadata: Metadata = {
   title: "accurate nursing app",
@@ -25,7 +22,6 @@ export default function RootLayout({
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
         )}
       >
         <div className="mt-2 mx-2">
