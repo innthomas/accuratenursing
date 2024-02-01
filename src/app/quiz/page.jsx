@@ -1,8 +1,25 @@
 "use client";
 import React, { useState } from "react";
+//import utils from "@/utils/utils"
 import { quiz } from "@/app/data";
 
+
 const page = () => {
+  // const { 
+  //   selectedAnswer,
+  //   setSelectedAnswer,
+  //   checked,
+  //   setChecked, 
+  //   selectedAnswerIndex,
+  //   setSelectedAnswerIndex,
+  //   showResult,
+  //   setShowResult,
+  //   result,
+  //   setResult,
+  //   questions,
+  //   question,
+  //   answers,} = utils
+ 
   const [activeQuestion, setActiveQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [checked, setChecked] = useState(false);
@@ -17,6 +34,15 @@ const page = () => {
   const { questions } = quiz;
   const { question, answers, correctAnswer } = questions[activeQuestion];
 
+  //store options
+  const [allCorrectAnswers, setAllCorrectAnswers] = useState([]);
+  const [allWrongAnswers, setAllWrongAnswers] = useState([]);
+
+   
+
+
+
+
   //   Select and check answer
   const onAnswerSelected = (answer, idx) => {
     setChecked(true);
@@ -24,9 +50,14 @@ const page = () => {
     if (answer === correctAnswer) {
       setSelectedAnswer(true);
       console.log("true");
+      // setAllCorrectAnswers((prev) => [...prev, answer]);
+      //set all correct answers with questions
+      setAllCorrectAnswers((prev) => [...prev, { question, answer }
+      ])
     } else {
       setSelectedAnswer(false);
       console.log("false");
+      setAllWrongAnswers((prev) => [...prev, { question, answer }]);
     }
   };
 
@@ -53,6 +84,7 @@ const page = () => {
     }
     setChecked(false);
   };
+
 
   return (
     <div className="container">
@@ -101,9 +133,29 @@ const page = () => {
             </p>
             <p>
               Correct Answers: <span>{result.correctAnswers}</span>
+             
+              <div>
+               
+                  {allCorrectAnswers.map((answer, idx) => (
+                    <div key={idx} className="" >
+                      <span>{answer.question}</span>{" : "}
+                      <span>{answer.answer}</span>
+                    </div>
+                  ))}
+              </div>
             </p>
             <p>
               Wrong Answers: <span>{result.wrongAnswers}</span>
+             
+              <div>
+               {allWrongAnswers.map((answer, idx) => (
+                    <div key={idx} className="" >
+                      <span>{answer.question}</span>{" : "}
+                      <span>{answer.answer}</span>
+                    </div>
+                  ))}
+              </div>
+           
             </p>
             <button onClick={() => window.location.reload()}>Restart</button>
           </div>
@@ -112,5 +164,6 @@ const page = () => {
     </div>
   );
 };
+
 
 export default page;
