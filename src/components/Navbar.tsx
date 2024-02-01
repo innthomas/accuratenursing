@@ -24,11 +24,12 @@ export default function Navbar() {
             <h1 className="text-2xl font-bold text-purple-600 mt-2">ARN</h1>
           </Link>
           <div className="md:hidden">
-            <Button variant={"ghost"}
+            <Button
+              variant={"ghost"}
               className="text-gray-300 outline-none p-2 rounded-md focus:border-purple-400 focus:border bg-inherit"
               onClick={() => setState(!state)}
             >
-              <Menu className="text-purple-800"/>
+              <Menu className="text-purple-800" />
             </Button>
           </div>
         </div>
@@ -37,12 +38,13 @@ export default function Navbar() {
             state ? "block" : "hidden"
           }`}
         >
-          <ul className="justify-center items-center space-y-8 md:flex md:space-x-6 md:space-y-0">
+          <ul
+            className="justify-center items-center space-y-8 md:flex md:space-x-6 md:space-y-0"
+            onClick={() => setState(!state)}
+          >
             {menus.map((item, idx) => (
               <li key={idx} className="text-gray-600 hover:text-indigo-600">
-                <Link href={item.path} onClick={() => setState(!state)}>
-                  {item.title}
-                </Link>
+                <Link href={item.path}>{item.title}</Link>
               </li>
             ))}
             <form className="flex items-center  space-x-2 border rounded-md p-2">
