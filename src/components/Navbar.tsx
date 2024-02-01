@@ -8,10 +8,10 @@ export default function Navbar() {
   const [state, setState] = React.useState(false);
 
   const menus = [
-    { title: "Home", path: "/your-path" },
-    { title: "Quiz", path: "/your-path" },
-    { title: "About Us", path: "/your-path" },
-    { title: "Contact Us", path: "/your-path" },
+    { title: "Home", path: "/" },
+    { title: "Quiz", path: "/quiz" },
+    { title: "About Us", path: "/" },
+    { title: "Contact Us", path: "/" },
   ];
 
   return (
@@ -24,11 +24,11 @@ export default function Navbar() {
             <h1 className="text-2xl font-bold text-purple-600 mt-2">ARN</h1>
           </Link>
           <div className="md:hidden">
-            <Button
-              className="text-gray-300 outline-none p-2 rounded-md focus:border-gray-400 focus:border"
+            <Button variant={"ghost"}
+              className="text-gray-300 outline-none p-2 rounded-md focus:border-purple-400 focus:border bg-inherit"
               onClick={() => setState(!state)}
             >
-              <Menu />
+              <Menu className="text-purple-800"/>
             </Button>
           </div>
         </div>
@@ -40,7 +40,9 @@ export default function Navbar() {
           <ul className="justify-center items-center space-y-8 md:flex md:space-x-6 md:space-y-0">
             {menus.map((item, idx) => (
               <li key={idx} className="text-gray-600 hover:text-indigo-600">
-                <Link href={item.path}>{item.title}</Link>
+                <Link href={item.path} onClick={() => setState(!state)}>
+                  {item.title}
+                </Link>
               </li>
             ))}
             <form className="flex items-center  space-x-2 border rounded-md p-2">
